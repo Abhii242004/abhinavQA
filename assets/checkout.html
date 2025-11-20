@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>E-Shop Checkout</title>
+    <style>
+        body { font-family: Arial; margin: 30px; }
+        .error { color: red; font-size: 14px; }
+        .green-btn { background-color: green; color: white; padding: 10px 20px; border: none; cursor: pointer; }
+        .item { margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+
+<h2>E-Shop Checkout</h2>
+
+<h3>Products</h3>
+<div class="item">
+    <span>Wireless Mouse - $20</span>
+    <button id="add_mouse">Add to Cart</button>
+</div>
+<div class="item">
+    <span>Keyboard - $30</span>
+    <button id="add_keyboard">Add to Cart</button>
+</div>
+<div class="item">
+    <span>USB-C Cable - $10</span>
+    <button id="add_cable">Add to Cart</button>
+</div>
+
+<h3>Cart Summary</h3>
+<div>
+    <label>Mouse Qty: </label><input id="qty_mouse" type="number" value="0" min="0"><br>
+    <label>Keyboard Qty: </label><input id="qty_keyboard" type="number" value="0" min="0"><br>
+    <label>Cable Qty: </label><input id="qty_cable" type="number" value="0" min="0"><br>
+</div>
+
+<h3>Discount Code</h3>
+<input id="discount_code" type="text" placeholder="Enter code">
+<div id="discount_error" class="error"></div>
+
+<h3>User Details</h3>
+<input id="name" placeholder="Name"><div id="name_error" class="error"></div>
+<input id="email" placeholder="Email"><div id="email_error" class="error"></div>
+<input id="address" placeholder="Address"><div id="address_error" class="error"></div>
+
+<h3>Shipping Method</h3>
+<input type="radio" name="ship" value="standard" checked> Standard (Free)<br>
+<input type="radio" name="ship" value="express"> Express ($10)<br>
+
+<h3>Payment Method</h3>
+<input type="radio" name="pay" value="card" checked> Credit Card<br>
+<input type="radio" name="pay" value="paypal"> PayPal<br>
+
+<br>
+<button id="pay_now" class="green-btn">Pay Now</button>
+<h3 id="payment_status"></h3>
+
+<script>
+document.getElementById("add_mouse").onclick = () => {
+    document.getElementById("qty_mouse").value++;
+};
+document.getElementById("add_keyboard").onclick = () => {
+    document.getElementById("qty_keyboard").value++;
+};
+document.getElementById("add_cable").onclick = () => {
+    document.getElementById("qty_cable").value++;
+};
+
+document.getElementById("pay_now").onclick = () => {
+    let valid = true;
+
+    document.getElementById("name_error").innerHTML = "";
+    document.getElementById("email_error").innerHTML = "";
+    document.getElementById("address_error").innerHTML = "";
+    document.getElementById("discount_error").innerHTML = "";
+
+    let name = document.getElementById("name").value.trim();
+    let email = document.getElementById("email").value.trim();
+    let address = document.getElementById("address").value.trim();
+
+    if (!name) { valid = false; document.getElementById("name_error").innerHTML = "Name required"; }
+    if (!email.includes("@")) { valid = false; document.getElementById("email_error").innerHTML = "Invalid email"; }
+    if (!address) { valid = false; document.getElementById("address_error").innerHTML = "Address required"; }
+
+    if (valid) {
+        document.getElementById("payment_status").innerHTML = "Payment Successful!";
+    }
+};
+</script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+UI/UX Guidelines
+
+1. Form validation errors must be displayed in RED text.
+2. The “Pay Now” button must be GREEN.
+3. All product items must have "Add to Cart" buttons.
+4. The success message should be displayed below the Pay Now button.
+5. Invalid email should show: "Invalid email".
+6. Required fields must show: "Name required", "Address required".
